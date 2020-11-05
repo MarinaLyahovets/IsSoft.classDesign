@@ -11,6 +11,7 @@ import static com.google.common.base.Preconditions.*;
 
 @Slf4j
 public class PassengerTrain extends Train {
+    public static final int MAX_COUNT_SEAT = 170;
     @Getter
     private final int countSeat;
     private final List<Passenger> listPassengers = new ArrayList<>();
@@ -24,7 +25,7 @@ public class PassengerTrain extends Train {
 
     public static PassengerTrain of(String model, int countSeat){
         Preconditions.checkArgument(countSeat > 0);
-        Preconditions.checkArgument(countSeat < 170);
+        Preconditions.checkArgument(countSeat < MAX_COUNT_SEAT);
         return new PassengerTrain(model, countSeat);
     }
 

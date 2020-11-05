@@ -11,6 +11,7 @@ import static com.google.common.base.Preconditions.*;
 @Slf4j
 @Getter
 public class Driver {
+    public static final int DRIVING_AGE = 18;
     private boolean havingDrivingLicense;
     private final User driver;
 
@@ -23,7 +24,7 @@ public class Driver {
     }
     public static Driver of(boolean havingDrivingLicense, User driver){
         checkNotNull(driver, "User is null");
-        checkArgument(driver.getAge() >= 18, "User is too young!");
+        checkArgument(driver.getAge() >= DRIVING_AGE, "User is too young!");
         return new Driver(havingDrivingLicense, driver);
     }
 
