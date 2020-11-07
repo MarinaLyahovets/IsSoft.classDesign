@@ -19,6 +19,7 @@ class LocomotiveTest {
     @Test
     void of_successfully() {
         Locomotive locomotive = Locomotive.of("61-4000", "Электровоз", 15);
+
         assertThat(locomotive.getMaxSpeed(), is(15));
     }
 
@@ -28,6 +29,7 @@ class LocomotiveTest {
         User user = User.of("Lyahovets", "Marina");
         user.setAge(19);
         Driver driver = Driver.of(false, user);
+
         assertThrows(IllegalStateException.class, ()->{
             locomotive.setDriver(driver);
         });
@@ -38,8 +40,11 @@ class LocomotiveTest {
         Locomotive locomotive = Locomotive.of("61-4000", "Электровоз", 15);
         User user = User.of("Lyahovets", "Marina");
         user.setAge(19);
+
         Driver driver = Driver.of(true, user);
+
         locomotive.setDriver(driver);
+
         assertThat(locomotive.getDriver(), is(driver));
     }
 

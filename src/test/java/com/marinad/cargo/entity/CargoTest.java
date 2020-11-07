@@ -17,6 +17,7 @@ class CargoTest {
     @Test
     void of_successfully(){
         Cargo cargo = Cargo.of("Кирпичи", 13);
+
         assertThat(cargo.getWeight(), is(13));
     }
 }

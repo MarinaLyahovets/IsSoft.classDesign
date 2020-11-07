@@ -12,12 +12,14 @@ class TicketTest {
     void setPrice_successfully() {
         Ticket ticket = Ticket.of("Minsk", "Moscow", new Time(43200000), new Time(46800000));
         ticket.setPrice(133);
+
         assertThat(ticket.getPrice(), is(equalTo(133)));
     }
 
     @Test
     void setPrice_invalid(){
         Ticket ticket = Ticket.of("Minsk", "Moscow", new Time(43200000), new Time(46800000));
+
         assertThrows(IllegalArgumentException.class, ()->{
             ticket.setPrice(-12);
         });
@@ -28,6 +30,7 @@ class TicketTest {
         assertThrows(IllegalArgumentException.class, ()->{
             Ticket ticket = Ticket.of("Minsk", "Minsk", new Time(43200000), new Time(44200001));
         });
+
         assertThrows(IllegalArgumentException.class, ()->{
             Ticket ticket = Ticket.of("Minsk", "Moscow", new Time(43200000), new Time(43200000));
         });
@@ -37,6 +40,7 @@ class TicketTest {
         assertThrows(NullPointerException.class, ()->{
             Ticket ticket = Ticket.of(null, "Minsk", new Time(43200000), new Time(44200001));
         });
+
         assertThrows(NullPointerException.class, ()->{
             Ticket ticket = Ticket.of("Minsk", null, new Time(43200000), new Time(43200000));
         });
@@ -45,6 +49,7 @@ class TicketTest {
     @Test
     void of_successfully(){
         Ticket ticket = Ticket.of("Minsk", "Moscow", new Time(43200000), new Time(44200001));
+
         assertThat(ticket.getPlaceOfArrival(), equalTo("Moscow"));
         assertThat(ticket.getPlaceOfDeparture(), equalTo("Minsk"));
         assertThat(ticket.getTimeOfArrival(), equalTo(new Time(44200001)));

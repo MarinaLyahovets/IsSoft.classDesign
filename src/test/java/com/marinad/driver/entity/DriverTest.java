@@ -20,6 +20,7 @@ class DriverTest {
     void setDriver_invalid(){
         User user = User.of("Lyahovets", "Marina");
         user.setAge(15);
+
         assertThrows(IllegalArgumentException.class, ()->{
             Driver driver = Driver.of(true, user);
         });

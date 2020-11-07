@@ -17,6 +17,7 @@ class PassengerTrainTest {
     @Test
     void addPassenger_nullInvalid() {
         PassengerTrain passengerTrain = PassengerTrain.of("61-4445", 158);
+
         assertThrows(NullPointerException.class, ()->{
             passengerTrain.addPassenger(null);
         });
@@ -28,9 +29,34 @@ class PassengerTrainTest {
         PassengerTrain passengerTrain = PassengerTrain.of("61-4445", 1);
         Passenger passenger = Passenger.of(User.of("Lyahovets", "Marina"),
                 Ticket.of("Minsk", "Moscow", new Time(4200000), new Time(4500000)));
+
         passengerTrain.addPassenger(passenger);
+
         assertThrows(IllegalStateException.class, ()->{
             passengerTrain.addPassenger(passenger);
+        });
+
+    }
+
+    @Test
+    void removePassenger_nullInvalid() {
+        PassengerTrain passengerTrain = PassengerTrain.of("61-4445", 158);
+
+        assertThrows(NullPointerException.class, ()->{
+            passengerTrain.removePassenger(null);
+        });
+
+    }
+
+    @Test
+    void removePassenger_invalid() {
+        PassengerTrain passengerTrain = PassengerTrain.of("61-4445", 1);
+        Passenger passenger = Passenger.of(User.of("Lyahovets", "Marina"),
+                Ticket.of("Minsk", "Moscow", new Time(4200000), new Time(4500000)));
+
+
+        assertThrows(IllegalStateException.class, ()->{
+            passengerTrain.removePassenger(passenger);
         });
 
     }
@@ -40,9 +66,11 @@ class PassengerTrainTest {
         PassengerTrain passengerTrain = PassengerTrain.of("61-4445", 1);
         Passenger passenger = Passenger.of(User.of("Lyahovets", "Marina"),
                 Ticket.of("Minsk", "Moscow", new Time(4200000), new Time(4500000)));
-        passengerTrain.addPassenger(passenger);
         List<Passenger> list = new ArrayList<Passenger>();
+
+        passengerTrain.addPassenger(passenger);
         list.add(passenger);
+
         assertThat(passengerTrain.getListPassengers(), is(list));
     }
 
@@ -51,10 +79,12 @@ class PassengerTrainTest {
         PassengerTrain passengerTrain = PassengerTrain.of("61-4445", 1);
         Passenger passenger = Passenger.of(User.of("Lyahovets", "Marina"),
                 Ticket.of("Minsk", "Moscow", new Time(4200000), new Time(4500000)));
-        passengerTrain.addPassenger(passenger);
         List<Passenger> list = new ArrayList<Passenger>();
+
+        passengerTrain.addPassenger(passenger);
         list.add(passenger);
         list.add(passenger);
+
         assertNotEquals(passengerTrain.getListPassengers(), list);
     }
 
@@ -63,6 +93,7 @@ class PassengerTrainTest {
         assertThrows(IllegalArgumentException.class, ()->{
             PassengerTrain passengerTrain = PassengerTrain.of("61-4445", -1);
         });
+
         assertThrows(IllegalArgumentException.class, ()->{
             PassengerTrain passengerTrain = PassengerTrain.of("61-4445", 180);
         });
@@ -71,6 +102,7 @@ class PassengerTrainTest {
     @Test
     void of_successfully() {
         PassengerTrain passengerTrain = PassengerTrain.of("61-4445", 1);
+
         assertThat(passengerTrain.getCountSeat(), is(1));
     }
 

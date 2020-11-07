@@ -22,12 +22,14 @@ class FreightTrainTest {
     @Test
     void of_successfully() {
         FreightTrain freightTrain = FreightTrain.of("61-4445", 184);
+
         assertThat(freightTrain.getLiftingCapacity(), is(184));
     }
 
     @Test
     void addCaro_nullInvalid() {
         FreightTrain freightTrain = FreightTrain.of("61-4445", 158);
+
         assertThrows(NullPointerException.class, ()->{
             freightTrain.addCaro(null);
         });
@@ -38,9 +40,31 @@ class FreightTrainTest {
     void addCargo_invalid() {
         FreightTrain freightTrain = FreightTrain.of("61-4445", 158);
         Cargo cargo = Cargo.of("Кирпичи", 127);
+
         freightTrain.addCaro(cargo);
+
         assertThrows(IllegalStateException.class, ()->{
             freightTrain.addCaro(cargo);
+        });
+    }
+
+    @Test
+    void removeCaro_nullInvalid() {
+        FreightTrain freightTrain = FreightTrain.of("61-4445", 158);
+
+        assertThrows(NullPointerException.class, ()->{
+            freightTrain.removeCargo(null);
+        });
+
+    }
+
+    @Test
+    void removeCargo_invalid() {
+        FreightTrain freightTrain = FreightTrain.of("61-4445", 158);
+        Cargo cargo = Cargo.of("Кирпичи", 127);
+
+        assertThrows(IllegalStateException.class, ()->{
+            freightTrain.removeCargo(cargo);
         });
     }
 
@@ -50,18 +74,26 @@ class FreightTrainTest {
         Cargo cargo = Cargo.of("Кирпичи", 127);
         freightTrain.addCaro(cargo);
         List<Cargo> list = new ArrayList<Cargo>();
+
         list.add(cargo);
         list.add(cargo);
+
         assertNotEquals(freightTrain.getCargoList(), list);
     }
 
     @Test
     void getCargoList_successfully() {
         FreightTrain freightTrain = FreightTrain.of("61-4445", 158);
-        Cargo cargo = Cargo.of("Кирпичи", 127);
-        freightTrain.addCaro(cargo);
+        Cargo cargo = Cargo.of("Кирпичи", 20);
         List<Cargo> list = new ArrayList<Cargo>();
+
+        freightTrain.addCaro(cargo);
+        freightTrain.addCaro(cargo);
         list.add(cargo);
+
+        freightTrain.removeCargo(cargo);
+
+
         assertThat(freightTrain.getCargoList(), is(list));
     }
 

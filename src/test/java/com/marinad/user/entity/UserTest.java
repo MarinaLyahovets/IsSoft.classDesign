@@ -11,6 +11,7 @@ class UserTest {
     @Test
     void setAge_invalid() {
         User user = User.of("Lyahovets", "Marina");
+
         assertThrows(IllegalArgumentException.class, () ->{ user.setAge(-19);});
     }
 
@@ -18,6 +19,7 @@ class UserTest {
     void setAge_successfully(){
         User user = User.of("Lyahovets", "Marina");
         user.setAge(19);
+
         assertThat(user.getAge(), is(equalTo(19)));
     }
 }

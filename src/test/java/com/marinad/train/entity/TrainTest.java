@@ -19,6 +19,7 @@ class TrainTest {
     @Test
     void setNextTrain_equalsInvalid(){
         Train train = Train.of("61-4440", "Unsigned");
+
         assertThrows(IllegalArgumentException.class, ()->{
             train.setNextTrain(train);
         });
@@ -28,7 +29,9 @@ class TrainTest {
     void setNextTrain_successfully(){
         Train train = Train.of("61-4440", "Unsigned");
         Train nextTrain = Train.of("61-4441", "Unsigned");
+
         train.setNextTrain(nextTrain);
+
         assertThat(train.getNextTrain(), is(equalTo(nextTrain)));
     }
 }

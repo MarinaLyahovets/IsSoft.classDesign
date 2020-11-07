@@ -17,6 +17,7 @@ class PassengerTest {
             Passenger passenger = Passenger.of(null, Ticket.of("Minsk", "Moscow",
                     new Time(43200000), new Time(46800000)));
         });
+
         assertThrows(NullPointerException.class, ()->{
             Passenger passenger = Passenger.of(User.of("Lyahovets", "Marina"), null);
         });
@@ -26,6 +27,7 @@ class PassengerTest {
         User user = User.of("Lyahovets", "Marina");
         Ticket ticket = Ticket.of("Minsk", "Moscow", new Time(43200000), new Time(46800000));
         Passenger passenger = Passenger.of(user, ticket);
+
         assertThat(passenger.getPassenger(), is(user));
         assertThat(passenger.getTicket(), is(ticket));
     }
